@@ -54,7 +54,7 @@ export function setupShotScene(state, api) {
       showBanner('SNATCHED!', 'The Starlight Kirin is grabbed — RUN for the door!', '#7fe08a', 99);
       floatText(706, 396, '+2,400', '#ffd76a', 21);
       floatText(852, 348, 'WARDEN — ON YOU!', '#ff8aa5', 15);
-      floatText(640, 128, 'PRIZE TAKEN', '#7fe08a', 16);
+      floatText(640, 196, 'PRIZE TAKEN', '#7fe08a', 16);
       burst(706, 448, '#fff3a8', 16, 150);
       burst(640, 130, '#ffd76a', 12, 120);
     };
@@ -86,7 +86,7 @@ export function setupShotScene(state, api) {
     state.stageFx = () => {
       burst(300, 300, '#ffd76a', 20, 170);
       burst(980, 260, '#ff8ad8', 16, 150);
-      floatText(640, 470, '48,720', '#ffd76a', 22);
+      floatText(640, 452, '48,720', '#ffd76a', 22);
     };
   } else {
     return false;

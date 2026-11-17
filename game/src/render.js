@@ -380,8 +380,13 @@ export function drawHeist(ctx, state, t) {
   ctx.strokeStyle = 'rgba(160,130,230,.13)'; ctx.lineWidth = 1;
   for (let x = 180; x < 1160; x += 60) { ctx.beginPath(); ctx.moveTo(x, 70); ctx.lineTo(x, 686); ctx.stroke(); }
   for (let y = 126; y < 690; y += 60) { ctx.beginPath(); ctx.moveTo(124, y); ctx.lineTo(1156, y); ctx.stroke(); }
-  ctx.fillStyle = '#ffe9b8'; ctx.font = 'bold 19px Georgia'; ctx.textAlign = 'center';
-  ctx.fillText(`${V.def.name} — keeper: ${V.def.keeper}${V.def.final ? ' 👑' : ''}${V.def.midBoss ? ' ⚔ mid-boss vault' : ''}`, 640, 92);
+  // Vault title as a floor inscription in the gap between the corner
+  // panels, above the door: the top-centre band is owned by the WIN/LOSE
+  // panel and the lock bar (a centred title at y=92 rendered unreadable
+  // behind that panel), and the bottom-left corner belongs to the threat
+  // panel, which dimmed a title starting at x=140.
+  ctx.fillStyle = '#ffe9b8'; ctx.font = 'bold 15px Georgia'; ctx.textAlign = 'left';
+  ctx.fillText(`${V.def.name} — keeper: ${V.def.keeper}${V.def.final ? ' 👑' : ''}${V.def.midBoss ? ' ⚔ mid-boss vault' : ''}`, 264, 650);
 
   // display cases
   for (const c of V.cases) {
@@ -400,8 +405,10 @@ export function drawHeist(ctx, state, t) {
     ctx.fillStyle = '#ffd76a'; ctx.font = 'bold 13px Georgia'; ctx.textAlign = 'center';
     ctx.fillText(`PRIZE: ${creatureById(V.def.prize).name}`, P.x, P.y + 62);
   } else {
+    // At the PRIZE label's own spot (P.y + 62): P.y + 30 landed on the vault
+    // lock bar row and the two texts smeared into one line.
     ctx.fillStyle = '#7fe08a'; ctx.font = 'bold 14px Georgia'; ctx.textAlign = 'center';
-    ctx.fillText('PRIZE SNATCHED — RUN!', P.x, P.y + 30);
+    ctx.fillText('PRIZE SNATCHED — RUN!', P.x, P.y + 62);
   }
 
   // door
