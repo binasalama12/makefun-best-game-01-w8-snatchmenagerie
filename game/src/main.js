@@ -571,7 +571,9 @@ function frame(now) {
         window.__shotReady = true;
       }
     }
-    draw(simT);
+    // Software renderers crawl through 150 full canvas frames; the staged
+    // tableau is static, so only paint the last few frames before the freeze.
+    if (shotFrame >= SHOT_FREEZE_FRAME - 2) draw(simT);
     requestAnimationFrame(frame);
     return;
   }
